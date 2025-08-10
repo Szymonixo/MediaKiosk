@@ -29,10 +29,12 @@
     </style>
 </head>
 <body>
+    <h1 onload="getip()" id="IPHeader" style="display:block; position: absolute; z-index: 100; left: 20%; top: 10%; color: aliceblue;">[IP]</h1>
     <video id="kioskVideo" no-controls autoplay  muted >
         <source id="videosrc" src="default/splash.mp4" >
     </video>
     <img id="imageElement" style="display:none;" >
+
 
     <script>
         let i = 0;
@@ -105,6 +107,24 @@
 
         setInterval(UpdateList, 10000);
         UpdateList();
+
+        
+            const ipHeader = document.getElementById("IPHeader");
+            const xmlhttp2 = new XMLHttpRequest();
+            xmlhttp2.onload = function() {
+                if (this.status === 200) {
+                    const responsee = this.responseText;
+                    if (responsee.length > 0) {
+                        ipHeader.innerHTML = responsee;
+                        setTimeout(15000, function(){ipHeader.style.display = "none";});
+                    }
+                }
+            };
+            xmlhttp2.open("GET", "getServerName.php");
+            xmlhttp2.send();
+        
+
+
 
     </script>
 </body>
