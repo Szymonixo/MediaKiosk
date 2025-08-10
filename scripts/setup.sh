@@ -60,7 +60,7 @@ sed -e "s|PI_HOME|$PI_HOME|g" \
     -e "s|PI_USER|$PI_USER|g" \
     "$PIOSK_DIR/services/mediakiosk-runner.template" > "/etc/systemd/system/mediakiosk-runner.service"
 
-sudo cp default/apache.conf /etc/apache2/sites-available/000-default.conf
+sudo cp -a site /var/www/html
 
 sudo chmod +x $PIOSK_DIR/scripts/runner.sh
 
@@ -80,10 +80,9 @@ systemctl start apache2
 
 echo -e "${INFO}Changing backgrounds..."
 
-mkdir usr/share/plymouth/themes/sdatheme
-cp -a defaults/plymouth-theme /usr/share/plymouth/themes/sdatheme
-update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/sdatheme/sdatheme.plymouth 100
-
+mkdir -p /usr/share/plymouth/themes/sdatheme
+cp -a default/plymouth-theme /usr/share/plymouth/themes/sdatheme
+sudo plymouth-set-default-theme sdatheme
 
   rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot change wallpaper config file"
   cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || touch "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
