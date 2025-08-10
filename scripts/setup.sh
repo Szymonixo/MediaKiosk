@@ -62,8 +62,11 @@ sed -e "s|PI_HOME|$PI_HOME|g" \
 sed -e "s|DocumentRoot /var/www/html|DocumentRoot /etc/MediaKiosk|" \
     "/etc/apache2/sites-available/000-default.conf"
 
+sed -e "s|xdg-autostart = lxsession-xdg-autostart|xdg-autostart = lxsession-xdg-autostart|" \
+    "/etc/apache2/sites-available/000-default.conf"
+
 cp services/mediakiosk.desktop /etc/xdg/autostart
-chmod +x /etc/MediaKiosk/scripts/runner.sh
+chmod +x /$PIOSK_DIR/scripts/runner.sh
 
 echo -e "${INFO}Reloading systemd daemons...${RESET}"
 systemctl daemon-reload
