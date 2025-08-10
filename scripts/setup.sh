@@ -2,7 +2,7 @@
 set -e
 
 # Installation directory
-PIOSK_DIR="/var/www/html"
+PIOSK_DIR="/etc/MediaKiosk"
 
 RESET='\033[0m'      # Reset to default
 ERROR='\033[1;31m'   # Bold Red
@@ -60,6 +60,8 @@ sed -e "s|PI_HOME|$PI_HOME|g" \
     -e "s|PI_USER|$PI_USER|g" \
     "$PIOSK_DIR/services/mediakiosk-runner.template" > "/etc/systemd/system/mediakiosk-runner.service"
 
+sed -e "s|DocumentRoot /var/www/html|DocumentRoot /etc/MediaKiosk|" \
+    "/etc/apache2/sites-available/000-default.conf"
 
 echo -e "${INFO}Reloading systemd daemons...${RESET}"
 systemctl daemon-reload

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-chromium-browser localhost/MediaKiosk/kiosk.html\
+chromium-browser localhost/kiosk.html\
   --disable-component-update \
   --disable-composited-antialiasing \
   --disable-gpu-driver-bug-workarounds \
