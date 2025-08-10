@@ -59,9 +59,10 @@ sed -e "s|PI_HOME|$PI_HOME|g" \
     -e "s|PI_SUID|$PI_SUID|g" \
     -e "s|PI_USER|$PI_USER|g" \
     "$PIOSK_DIR/services/mediakiosk-runner.template" > "/etc/systemd/system/mediakiosk-runner.service"
-sed -e "s|/var/www/html|$PIOSK_DIK|" "/etc/apache2/sites-available/000-default.conf"
 
-chmod +x $PIOSK_DIR/scripts/runner.sh
+sudo cp default/apache.conf /etc/apache2/sites-available/000-default.conf
+
+sudo chmod +x $PIOSK_DIR/scripts/runner.sh
 
 echo -e "${INFO}Reloading systemd daemons...${RESET}"
 systemctl daemon-reload
@@ -79,15 +80,10 @@ systemctl start apache2
 
 echo -e "${INFO}Changing backgrounds..."
 
-rm /usr/share/plymouth/themes/sdatheme -r || echo "clear installation..."
+mkdir usr/share/plymouth/themes/sdatheme
+cp -a defaults/plymouth-theme /usr/share/plymouth/themes/sdatheme
+update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/sdatheme/sdatheme.plymouth 100
 
-cd /usr/share/plymouth/themes
-sudo cp -a pix sdatheme
-cd sdatheme
-sudo mv "pix.plymouth" "sdatheme.plymouth"
-sudo mv "pix.script" "sdatheme.script"
-sudo rm splash.png
-cp $PIOSK_DIR/default/sda.png /usr/share/plymouth/themes/sdatheme/splash.png
 
   rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot change wallpaper config file"
   cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || touch "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
