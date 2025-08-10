@@ -87,7 +87,7 @@ rm /usr/share/plymouth/themes/pix/splash.png
 cp $PIOSK_DIR/default/sda.png /usr/share/plymouth/themes/pix/splash.png
 
 rm ~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf
-cp $PIOSK_DIR/default/desktop-items-0.conf ~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf
+cp $PIOSK_DIR/default/desktop-items-0.conf "~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
 
 
 echo -e "${CALLOUT}\nMediaKiosk is now installed.${RESET}"
