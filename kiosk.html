@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosk</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit:contain;
+        }
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <video id="kioskVideo" no-controls autoplay  muted >
+        <source id="videosrc" src="default/splash.mp4" >
+    </video>
+    <img id="imageElement" style="display:none;" >
+
+    <script>
+        let i = 0;
+        let queue = [];
+        const sourceElement = document.getElementById('videosrc');
+        const videoElement = document.getElementById('kioskVideo');
+        const imageElement = document.getElementById('imageElement');
+        videoElement.onended = function() {
+            videoend();
+        };
+        function UpdateList()
+        {
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                if (this.status === 200) {
+                    const response = JSON.parse(this.responseText);
+                    if (response.length > 0) {
+                    queue = response;                    
+                    }
+                }
+            };
+            xmlhttp.open("GET", "getMediaList.php");
+            xmlhttp.send();
+        }
+        function videoend() 
+        {
+            
+            if (queue.length > i) 
+            {
+                playmedia(queue[i]);
+            } 
+            else if (queue.length === 0) 
+            {
+                sourceElement.src = "default/splash.mp4"; 
+                videoElement.load();
+                videoElement.play();
+            } 
+            else 
+            {
+                i = 0;
+                playmedia(queue[i]);
+            }
+        }
+
+        function playmedia(media)
+        {
+            let extension = media.slice((media.lastIndexOf(".") - 1 >>> 0) + 2);
+            if(extension === "mp4" || extension === "webm" || extension === "mov" || extension === "avi" || extension === "flv") 
+                {
+                    sourceElement.src = "media/" + media;
+                    videoElement.load();
+                    videoElement.play();
+                    
+                } 
+                else if (extension === "jpg" || extension === "jpeg" || extension === "png" || extension === "gif") 
+                {
+                    videoElement.style.display = "none";
+                    imageElement.src = "media/" + media;
+                    imageElement.style.display = "block";
+                    
+                    setTimeout(() => {
+                        imageElement.style.display = "none";
+                        videoElement.style.display = "block";
+                        videoend(); 
+                    }, 15000);
+            } 
+            i++;
+
+        }
+
+        setInterval(UpdateList, 10000);
+        UpdateList();
+
+    </script>
+</body>
+</html>

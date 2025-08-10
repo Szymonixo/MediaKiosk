@@ -1,0 +1,66 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
+    color: #EEEEEE;
+    font-family: Helvetica;
+    font-size: 16px;
+}
+main
+{
+    padding: 20px;
+    background-color: #393E46;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 10vh;
+    border-radius: 10px;
+
+}
+a
+{
+    color: #00ADB5;
+    text-decoration: none;
+}
+ul
+{
+    list-style-type: none;
+    padding: 0;
+}
+ul li
+{
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #393E46;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+input[value="Delete"]
+{
+    background-color: #FF5722;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="file"]
+{
+    background-color: #00ADB5;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[value="Upload"]
+{
+    background-color: #017980;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
