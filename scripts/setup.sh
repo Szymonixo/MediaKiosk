@@ -91,12 +91,12 @@ sudo mv pix.script sdatheme.script
 sudo rm splash.png
 cp $PIOSK_DIR/default/sda.png /usr/share/plymouth/themes/sdatheme/splash.png
 
-if [$XDG_CURRENT_DESKTOP == "LXDE" || $XDG_CURRENT_DESKTOP == "LXQt"]; then 
+if [$XDG_CURRENT_DESKTOP = "LXDE" || $XDG_CURRENT_DESKTOP = "LXQt"]; then 
   rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot change wallpaper config file"
   cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot override wallpaper config file"
 fi
 
-if [$XDG_CURRENT_DESKTOP == "GNOME"]; then
+if [$XDG_CURRENT_DESKTOP = "GNOME"]; then
   gsettings set org.gnome.desktop.background picture-uri file:///opt/MediaKiosk/default/sda.png || echo "cannot override wallpaper"
 fi
 
