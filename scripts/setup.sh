@@ -94,8 +94,8 @@ sudo sed -i 's/pix/sdatheme/g; s/Raspberry Pi/My/g' sdatheme.plymouth
 sudo sed -i 's/pix/sdatheme/g' /etc/plymouth/plymouthd.conf
 
 
-rm "$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
-cp $PIOSK_DIR/default/desktop-items-0.conf "~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
+rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
+cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
 
 
 echo -e "${CALLOUT}\nMediaKiosk is now installed.${RESET}"
