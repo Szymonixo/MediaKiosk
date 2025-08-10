@@ -64,8 +64,7 @@ sed -e "s|DocumentRoot /var/www/html|DocumentRoot /etc/MediaKiosk|" \
 
 sed -e "s|xdg-autostart = lxsession-xdg-autostart|xdg-autostart = lxsession-xdg-autostart|" \
     "/etc/apache2/sites-available/000-default.conf"
-
-cp services/mediakiosk.desktop /etc/xdg/autostart
+    
 chmod +x /$PIOSK_DIR/scripts/runner.sh
 
 echo -e "${INFO}Reloading systemd daemons...${RESET}"

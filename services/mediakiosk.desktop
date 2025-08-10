@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=/opt/MediaKiost/scripts/runner.sh
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name=MediaKioskRunner
-Comment=Runs Chromium with MediaKiosk player
