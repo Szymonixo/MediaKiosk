@@ -84,9 +84,7 @@ mkdir -p /usr/share/plymouth/themes/sdatheme
 cp -a default/plymouth-theme/. /usr/share/plymouth/themes/sdatheme
 sudo plymouth-set-default-theme sdatheme
 
-  rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot change wallpaper config file"
-  cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || touch "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
-
+cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi" 
 
 echo -e "${CALLOUT}\nMediaKiosk is now installed.${RESET}"
 echo -e "Visit either of these links to access PiOSK dashboard:"
