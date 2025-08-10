@@ -60,6 +60,11 @@ sed -e "s|PI_HOME|$PI_HOME|g" \
     -e "s|PI_USER|$PI_USER|g" \
     "$PIOSK_DIR/services/mediakiosk-runner.template" > "/etc/systemd/system/mediakiosk-runner.service"
 
+
+if [[ ! -f /var/www/html/index.html ]]; then
+  rm /var/www/html/index.html
+fi
+
 sudo cp -a site/. /var/www/html
 
 sudo chmod +x $PIOSK_DIR/scripts/runner.sh
