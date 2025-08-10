@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 chromium-browser localhost/kiosk.html\
   --disable-component-update \
   --disable-composited-antialiasing \
