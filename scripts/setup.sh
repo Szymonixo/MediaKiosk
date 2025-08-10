@@ -37,7 +37,10 @@ fi
 echo -e "${INFO}Installing dependencies...${RESET}"
 apt install -y git wtype apache2 libapache2-mod-php
 
+
+
 echo -e "${INFO}Cloning repository...${RESET}"
+rm -R "$PIOSK_DIR" || echo "No dir. That's good!"
 git clone https://github.com/szymonixo/mediakiosk.git "$PIOSK_DIR"
 cd "$PIOSK_DIR"
 
