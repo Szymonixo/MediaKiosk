@@ -19,7 +19,10 @@ chromium-browser localhost/kiosk.html\
   --ignore-gpu-blocklist \
   --kiosk \
   --no-first-run \
-  --noerrdialogs || chromium localhost/kiosk.html \
+  --noerrdialogs \
+  --start-fullscreen
+  || \
+  chromium localhost/kiosk.html \
   --disable-component-update \
   --disable-composited-antialiasing \
   --disable-gpu-driver-bug-workarounds \
@@ -36,4 +39,5 @@ chromium-browser localhost/kiosk.html\
   --ignore-gpu-blocklist \
   --kiosk \
   --no-first-run \
-  --noerrdialogs
+  --noerrdialogs \
+  --start-fullscreen
