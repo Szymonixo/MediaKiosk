@@ -86,10 +86,10 @@ echo -e "${INFO}Changing backgrounds..."
 cd /usr/share/plymouth/themes
 sudo cp -a pix sdatheme
 cd sdatheme
+sudo mv pix.plymouth sdatheme.plymouth
+sudo mv pix.script sdatheme.script
 sudo rm splash.png
 cp $PIOSK_DIR/default/sda.png /usr/share/plymouth/themes/sdatheme/splash.png
-sudo sed -i 's/pix/sdatheme/g; s/Raspberry Pi/My/g' sdatheme.plymouth
-sudo sed -i 's/pix/sdatheme/g' /etc/plymouth/plymouthd.conf
 
 
 rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
