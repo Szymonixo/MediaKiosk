@@ -35,7 +35,7 @@ else
 fi
 
 echo -e "${INFO}Installing dependencies...${RESET}"
-apt install -y git wtype apache2 libapache2-mod-php
+apt install -y git wtype apache2 libapache2-mod-php xdotool
 
 
 

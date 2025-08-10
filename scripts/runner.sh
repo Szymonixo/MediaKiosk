@@ -1,4 +1,7 @@
 #!/bin/bash
+res = $(xdpyinfo | awk 'dimensions/print{$2}')
+xdotool mousemove $res | tr "x" " "
+
 chromium-browser localhost/kiosk.html\
   --disable-component-update \
   --disable-composited-antialiasing \
