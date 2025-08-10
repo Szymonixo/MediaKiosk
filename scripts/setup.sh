@@ -64,8 +64,8 @@ sed -e "s|DocumentRoot /var/www/html|DocumentRoot /etc/MediaKiosk|" \
 
 sed -e "s|xdg-autostart = lxsession-xdg-autostart|xdg-autostart = lxsession-xdg-autostart|" \
     "/etc/apache2/sites-available/000-default.conf"
-    
-chmod +x /$PIOSK_DIR/scripts/runner.sh
+
+chmod +x $PIOSK_DIR/scripts/runner.sh
 
 echo -e "${INFO}Reloading systemd daemons...${RESET}"
 systemctl daemon-reload
@@ -80,6 +80,12 @@ echo -e "${INFO}Starting MediaKiosk daemons...${RESET}"
 # systemctl start piosk-runner
 # systemctl start piosk-switcher
 systemctl start apache2
+
+echo -e "${INFO}Changing backgrounds..."
+
+rm /usr/share/plymouth/themes/pix/splash.png
+cp $PIOSK_DIR/default/sda.png /usr/share/plymouth/themes/pix/splash.png
+pcmanfm --set-wallpaper="$PIOSK_DIR/default/sda.png"
 
 echo -e "${CALLOUT}\nMediaKiosk is now installed.${RESET}"
 echo -e "Visit either of these links to access PiOSK dashboard:"
