@@ -90,7 +90,7 @@ cd ~
 
 echo "$PWD"
 
-rm "~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
+rm ".config/pcmanfm/LXDE-pi/desktop-items-0.conf"
 cp $PIOSK_DIR/default/desktop-items-0.conf "~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
 
 
