@@ -2,7 +2,7 @@
 set -e
 
 # Installation directory
-PIOSK_DIR="/opt/MediaKiosk"
+PIOSK_DIR="/var/www/html"
 
 RESET='\033[0m'      # Reset to default
 ERROR='\033[1;31m'   # Bold Red
