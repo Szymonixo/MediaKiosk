@@ -1,6 +1,6 @@
 #!/bin/bash
 res=$(xdpyinfo | awk '/dimensions/{print$2}')
-xdotool mousemove $res | tr "x" " "
+xdotool mousemove $(echo $res | tr "x" " ")
 
 chromium-browser localhost/kiosk.html\
   --disable-component-update \
