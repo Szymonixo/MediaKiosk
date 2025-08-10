@@ -59,11 +59,7 @@ sed -e "s|PI_HOME|$PI_HOME|g" \
     -e "s|PI_SUID|$PI_SUID|g" \
     -e "s|PI_USER|$PI_USER|g" \
     "$PIOSK_DIR/services/mediakiosk-runner.template" > "/etc/systemd/system/mediakiosk-runner.service"
-sed -e "s|DocumentRoot /var/www/html|DocumentRoot /etc/MediaKiosk|" \
-    "/etc/apache2/sites-available/000-default.conf"
-
-sed -e "s|xdg-autostart = lxsession-xdg-autostart|xdg-autostart = lxsession-xdg-autostart|" \
-    "/etc/apache2/sites-available/000-default.conf"
+sed -e "s|/var/www/html|$PIOSK_DIK|" "/etc/apache2/sites-available/000-default.conf"
 
 chmod +x $PIOSK_DIR/scripts/runner.sh
 
@@ -94,7 +90,7 @@ sudo rm splash.png
 cp $PIOSK_DIR/default/sda.png /usr/share/plymouth/themes/sdatheme/splash.png
 
   rm "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot change wallpaper config file"
-  cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || echo "cannot override wallpaper config file"
+  cp $PIOSK_DIR/default/desktop-items-0.conf "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf" || touch "/home/$SUDO_USER/.config/pcmanfm/LXDE-pi/desktop-items-0.conf"
 
 
 echo -e "${CALLOUT}\nMediaKiosk is now installed.${RESET}"
