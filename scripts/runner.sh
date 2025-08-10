@@ -20,9 +20,7 @@ chromium-browser localhost/kiosk.html\
   --kiosk \
   --no-first-run \
   --noerrdialogs \
-  --start-fullscreen
-  || \
-  chromium localhost/kiosk.html \
+  --start-fullscreen || chromium localhost/kiosk.html \
   --disable-component-update \
   --disable-composited-antialiasing \
   --disable-gpu-driver-bug-workarounds \
